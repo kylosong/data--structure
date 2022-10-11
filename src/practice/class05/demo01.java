@@ -35,7 +35,7 @@ public class demo01 {
         }
 
         public boolean contains(int num) {
-            return ((num>>6) & (1L << (num & 63))) != 0;
+            return ((bits[num>>6]) & (1L << (num & 63))) != 0;
         }
 
     }
@@ -68,7 +68,7 @@ public class demo01 {
                 System.out.println("Oops!");
             }
         }
-        System.out.println("测试结束！");
+        System.out.println("test end....");
 
 
     }

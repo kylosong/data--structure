@@ -102,7 +102,7 @@ public class demo03 {
 	 * 
 	 * 逻辑极其清楚，能理解复杂逻辑代码能力才会变强，多敲代码，coding能力才会变强
 	 * 
-	 * 为啥移动30位？因为x肯定是飞负的
+	 * 为啥移动30位？因为x肯定是非负的
 	 * 
 	 */
 	public static int div(int a, int b) {
@@ -116,7 +116,7 @@ public class demo03 {
 			}
 			
 		}
-		// 比较两者的符号位即可
+		// 比较两者的符号位即可，得到的结果是0或者1
 		return isNeg(a) ^ isNeg(b) ? negNum(res) : res;
 	}
 	
@@ -146,7 +146,8 @@ public class demo03 {
 	
 
 	public static void main(String[] args) {
-		System.out.println(multi(2, 3));
+//		System.out.println(multi(2, 3));
+	
 
 	}
 

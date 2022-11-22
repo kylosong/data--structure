@@ -11,9 +11,12 @@ public class demo01 {
 	 * 06 比较器、优先级队列、二叉树 内容： 比较器 优先级队列 二叉树的基本遍历 二叉树的递归套路
 	 * 
 	 * 题目： 补充了一个链表的题目 合并多个有序链表
-	 * Leetcode原题，https://leetcode.com/problems/merge-k-sorted-lists 判断两颗树是否结构相同
-	 * Leetcode原题，https://leetcode.com/problems/same-tree 判断一棵树是否是镜面树
-	 * Leetcode原题，https://leetcode.com/problems/symmetric-tree 返回一棵树的最大深度
+	 * Leetcode原题，https://leetcode.com/problems/merge-k-sorted-lists 
+	 * 判断两颗树是否结构相同
+	 * Leetcode原题，https://leetcode.com/problems/same-tree 
+	 * 判断一棵树是否是镜面树
+	 * Leetcode原题，https://leetcode.com/problems/symmetric-tree 
+	 * 返回一棵树的最大深度
 	 * Leetcode原题，https://leetcode.com/problems/maximum-depth-of-binary-tree
 	 * 用先序数组和中序数组重建一棵树
 	 * Leetcode原题，https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal
@@ -39,12 +42,16 @@ public class demo01 {
 //		arrayList.add(1);
 //		arrayList.add(2);
 
+		// heap 的比较结果不是有序的，仅仅负责比较找到最大值或者最小值，放在第一个
 		PriorityQueue<Integer> heap = new PriorityQueue<>(new MyComparator());
 		heap.add(2);
 		heap.add(4);
 		heap.add(50);
 		heap.add(1);
-		System.out.println(heap.peek());
+		System.out.println("==============");
+		for (Integer i : heap) {		
+			System.out.print(i + " ");
+		}
 
 	}
 
@@ -52,8 +59,14 @@ public class demo01 {
 
 		@Override
 		public int compare(Integer o1, Integer o2) {
-			// TODO Auto-generated method stub
-			return o1 - o2;
+			// o1 是下一个数，o2 是当前数。这里 o1 是 4，o2 是 2
+			//  o1 - o2 , 是从小到大排序，这里第一个是 1, 1 2 50 4 
+			//  o2 - o1， 是从大到小排序，这里第一个是 50, 50 2 4 1 
+			
+			System.out.println(o1 + " " + o2);
+			return o1 - o2; 
+			// 如果是负的，第一个排在前面，值小的放在前面
+			// 如果是正的，第二个排在前面，值大的放在前面
 		}
 
 	}

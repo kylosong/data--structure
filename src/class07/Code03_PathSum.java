@@ -41,6 +41,7 @@ public class Code03_PathSum {
 		}
 	}
 
+// me: 妙不可言
 //	public static boolean hasPathSum(TreeNode root, int sum) {
 //		if (root == null) {
 //			return false;

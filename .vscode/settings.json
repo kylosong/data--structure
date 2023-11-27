@@ -1,0 +1,6 @@
+{
+  "java.debug.settings.onBuildFailureProceed": true,
+  "code-runner.executorMap": {
+    "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
+  }
+}

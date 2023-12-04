@@ -1,10 +1,12 @@
 package practice.day07.practice01;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
 public class Demo {
+
   public static void main(String[] args) {
     // 1 2 3 4 5 6 7
     Node head = new Node(1);
@@ -23,7 +25,61 @@ public class Demo {
     // nin(head);
     // npos(head);
     // 层序遍历 1 2 3 4 5 6 7
-    level(head);
+    // level(head);
+    // 求一棵二叉树哪一层宽度最大，最大宽度是多少（设置flag变量，发现一个层的开始或者结束）
+    int value = getMaxLevel(head);
+    System.out.println("最大宽度是：" + value);
+  }
+
+  /**
+   * 求一棵二叉树哪一层宽度最大，最大宽度是多少（设置flag变量，发现一个层的开始或者结束）
+   * 感觉无从下手，有种高中做数学题的感觉，大哭中😭
+   * 解析：
+   * 无从下手的原因，自己还是想从整体解决问题
+   * 完全没有分解清楚可以通过一层一层去统计
+   * 二叉树的遍历几乎离不开，栈和队列，hashMap、变量等等辅助工具
+   * 怎样判断一层的开始或者结束是本题的一个重点！
+   * 
+   * 二叉树结构：1 2 3 4 5 6 7
+   * 最大宽度的结果是：4
+   * 
+   * 这题隔了一晚上，又花了35mins实现，真的太艰难了
+   * 但是自己能实现，说明之前对这题的理解还算不错的，要不然肯定是眼前一码黑的
+   * 
+   * @param head
+   */
+  public static int getMaxLevel(Node head) {
+    if (head == null) {
+      return 0;
+    }
+    int max = 0;
+    int currentLevelNodes = 0;
+    int currentLevel = 1;
+    Queue<Node> queue = new LinkedList<>();
+    HashMap<Node, Integer> hashMap = new HashMap<>();
+    hashMap.put(head, 1);
+    queue.add(head);
+    while (!queue.isEmpty()) {
+      Node cur = queue.poll();
+      int mLevel = hashMap.get(cur);
+      if (cur.left != null) {
+        queue.add(cur.left);
+        hashMap.put(cur.left, mLevel + 1);
+      }
+      if (cur.right != null) {
+        queue.add(cur.right);
+        hashMap.put(cur.right, mLevel + 1);
+      }
+      if (mLevel == currentLevel) {
+        currentLevelNodes++; // 4
+      } else {
+        max = Math.max(max, currentLevelNodes); // 2
+        currentLevel++;
+        currentLevelNodes = 1;
+      }
+    }
+    max = Math.max(max, currentLevelNodes);
+    return max;
   }
 
   // 1 2 4 5 3 6 7

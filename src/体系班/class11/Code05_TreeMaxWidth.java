@@ -30,7 +30,7 @@ public class Code05_TreeMaxWidth {
 		int max = 0;
 		while (!queue.isEmpty()) {
 			Node cur = queue.poll();
-			int curNodeLevel = levelMap.get(cur);
+			int curNodeLevel = levelMap.get(cur); // 3
 			if (cur.left != null) {
 				levelMap.put(cur.left, curNodeLevel + 1);
 				queue.add(cur.left);
@@ -40,11 +40,11 @@ public class Code05_TreeMaxWidth {
 				queue.add(cur.right);
 			}
 			if (curNodeLevel == curLevel) {
-				curLevelNodes++;
+				curLevelNodes++; // 4
 			} else {
-				max = Math.max(max, curLevelNodes);
-				curLevel++;
-				curLevelNodes = 1;
+				max = Math.max(max, curLevelNodes); // 4
+				curLevel++; // 3
+				curLevelNodes = 1; // 重置 curLevelNodes，初始个数为 1，否则当前层已经跳出循坏了
 			}
 		}
 		max = Math.max(max, curLevelNodes);

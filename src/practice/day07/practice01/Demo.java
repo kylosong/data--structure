@@ -27,8 +27,63 @@ public class Demo {
     // 层序遍历 1 2 3 4 5 6 7
     // level(head);
     // 求一棵二叉树哪一层宽度最大，最大宽度是多少（设置flag变量，发现一个层的开始或者结束）
-    int value = getMaxLevel(head);
-    System.out.println("最大宽度是：" + value);
+    // int value = getMaxLevel(head);
+    // System.out.println("最大宽度是：" + value);
+    // 先序遍历的序列化
+    // Queue<String> ans = preSerial(head);
+    // System.out.println(ans.toString());
+    // 先序遍历的反序列化
+    // Queue<String> ans = preSerial(head);
+    // Node nhead = preBuildBT(ans);
+    // System.out.println(nhead.value); // 1
+    // 层序遍历的序列化
+
+  }
+
+  /**
+   * 层序遍历的序列化
+   */
+
+  /**
+   * 先序遍历的反序列化
+   * 
+   * 这个函数肯定要返回这棵树的 head
+   * 递归去构建这棵树
+   */
+
+  public static Node preBuildBT(Queue<String> builds) {
+    if (builds == null || builds.isEmpty()) {
+      return null;
+    }
+    return preBuild(builds);
+  }
+
+  public static Node preBuild(Queue<String> builds) {
+    String value = builds.poll();
+    if (value == null) {
+      return null;
+    }
+    Node head = new Node(Integer.valueOf(value));
+    head.left = preBuild(builds);
+    head.right = preBuild(builds);
+    return head;
+  }
+
+  // 先序遍历的序列化
+  public static Queue<String> preSerial(Node head) {
+    Queue<String> ans = new LinkedList<>();
+    pres(head, ans);
+    return ans;
+  }
+
+  public static void pres(Node head, Queue<String> ans) {
+    if (head == null) {
+      ans.add(null);
+    } else {
+      ans.add(String.valueOf(head.value));
+      pres(head.left, ans);
+      pres(head.right, ans);
+    }
   }
 
   /**

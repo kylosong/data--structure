@@ -5,22 +5,22 @@ import java.util.Queue;
 import java.util.Stack;
 
 public class Code02_SerializeAndReconstructTree {
-    /*
-     * 二叉树可以通过先序、后序或者按层遍历的方式序列化和反序列化，
-     * 以下代码全部实现了。
-     * 但是，二叉树无法通过中序遍历的方式实现序列化和反序列化
-     * 因为不同的两棵树，可能得到同样的中序序列，即便补了空位置也可能一样。
-     * 比如如下两棵树
-     *         __2
-     *        /
-     *       1
-     *       和
-     *       1__
-     *          \
-     *           2
-     * 补足空位置的中序遍历结果都是{ null, 1, null, 2, null}
-     *       
-     * */
+	/*
+	 * 二叉树可以通过先序、后序或者按层遍历的方式序列化和反序列化，
+	 * 以下代码全部实现了。
+	 * 但是，二叉树无法通过中序遍历的方式实现序列化和反序列化
+	 * 因为不同的两棵树，可能得到同样的中序序列，即便补了空位置也可能一样。
+	 * 比如如下两棵树
+	 * __2
+	 * /
+	 * 1
+	 * 和
+	 * 1__
+	 * \
+	 * 2
+	 * 补足空位置的中序遍历结果都是{ null, 1, null, 2, null}
+	 * 
+	 */
 	public static class Node {
 		public int value;
 		public Node left;
@@ -31,8 +31,13 @@ public class Code02_SerializeAndReconstructTree {
 		}
 	}
 
+	/**
+	 * 序列化的结果是什么？
+	 * 能够完整的通过一种方式，把节点存储到一个地方，然后以相反的方式给取出来
+	 */
 	public static Queue<String> preSerial(Node head) {
 		Queue<String> ans = new LinkedList<>();
+		// 这一步写的其实挺好的，分开了，函数职责变得更加单一了
 		pres(head, ans);
 		return ans;
 	}
@@ -101,7 +106,7 @@ public class Code02_SerializeAndReconstructTree {
 		if (poslist == null || poslist.size() == 0) {
 			return null;
 		}
-		// 左右中  ->  stack(中右左)
+		// 左右中 -> stack(中右左)
 		Stack<String> stack = new Stack<>();
 		while (!poslist.isEmpty()) {
 			stack.push(poslist.poll());
@@ -129,7 +134,7 @@ public class Code02_SerializeAndReconstructTree {
 			Queue<Node> queue = new LinkedList<Node>();
 			queue.add(head);
 			while (!queue.isEmpty()) {
-				head = queue.poll(); // head 父   子
+				head = queue.poll(); // head 父 子
 				if (head.left != null) {
 					ans.add(String.valueOf(head.left.value));
 					queue.add(head.left);
@@ -259,6 +264,6 @@ public class Code02_SerializeAndReconstructTree {
 			}
 		}
 		System.out.println("test finish!");
-		
+
 	}
 }

@@ -37,12 +37,88 @@ public class Demo {
     // Node nhead = preBuildBT(ans);
     // System.out.println(nhead.value); // 1
     // 层序遍历的序列化
+    // Queue<String> ans = levelSerial(head);
+    // System.out.println(ans.toString());
+    // 层序遍历的反序列化
+    Queue<String> ans = levelSerial(head);
+    Node nhead = levelBuildBT(ans);
+    System.out.println(nhead.left.value);
+  }
 
+  /**
+   * 层序遍历的反序列化
+   * 
+   * @param head
+   * @return
+   */
+  public static Node levelBuildBT(Queue<String> builds) {
+    if (builds == null || builds.isEmpty()) {
+      return null;
+    }
+    return levelBuild(builds);
+  }
+
+  public static Node levelBuild(Queue<String> builds) {
+    Node head = generateNode(builds.poll());
+    Queue<Node> queue = new LinkedList<>();
+    if (head != null) {
+      queue.add(head);
+    }
+    Node node = null;
+    while (!queue.isEmpty()) {
+      node = queue.poll();
+      node.left = generateNode(builds.poll());
+      node.right = generateNode(builds.poll());
+      if (node.left != null) {
+        queue.add(node.left);
+      }
+      if (node.right != null) {
+        queue.add(node.right);
+      }
+    }
+    return head;
+  }
+
+  public static Node generateNode(String value) {
+    if (value == null) {
+      return null;
+    }
+    return new Node(Integer.valueOf(value));
   }
 
   /**
    * 层序遍历的序列化
    */
+  public static Queue<String> levelSerial(Node head) {
+    Queue<String> ans = new LinkedList<>();
+    if (head == null) {
+      ans.add(null);
+      return ans;
+    }
+    levels(head, ans);
+    return ans;
+  }
+
+  public static void levels(Node head, Queue<String> ans) {
+    Queue<Node> queue = new LinkedList<>();
+    ans.add(String.valueOf(head.value));
+    queue.add(head);
+    while (!queue.isEmpty()) {
+      Node cur = queue.poll();
+      if (cur.left != null) {
+        ans.add(String.valueOf(cur.left.value));
+        queue.add(cur.left);
+      } else {
+        ans.add(null);
+      }
+      if (cur.right != null) {
+        ans.add(String.valueOf(cur.right.value));
+        queue.add(cur.right);
+      } else {
+        ans.add(null);
+      }
+    }
+  }
 
   /**
    * 先序遍历的反序列化

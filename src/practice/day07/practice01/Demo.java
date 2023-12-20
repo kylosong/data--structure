@@ -40,9 +40,20 @@ public class Demo {
     // Queue<String> ans = levelSerial(head);
     // System.out.println(ans.toString());
     // 层序遍历的反序列化
-    Queue<String> ans = levelSerial(head);
-    Node nhead = levelBuildBT(ans);
-    System.out.println(nhead.left.value);
+    // Queue<String> ans = levelSerial(head);
+    // Node nhead = levelBuildBT(ans);
+    // System.out.println(nhead.left.value);
+    // 如何设计一个打印整棵树的打印函数
+
+  }
+
+  public static void printTree(Node head) {
+    System.out.println("print:");
+
+    System.out.println();
+  }
+
+  public static void printIn(Node head) {
   }
 
   /**

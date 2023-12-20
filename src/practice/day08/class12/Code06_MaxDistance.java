@@ -1,4 +1,4 @@
-package class12;
+package practice.day08.class12;
 
 import java.util.ArrayList;
 import java.util.HashMap;

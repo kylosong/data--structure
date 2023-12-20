@@ -44,7 +44,8 @@ public class Demo {
     // Node nhead = levelBuildBT(ans);
     // System.out.println(nhead.left.value);
     // 如何设计一个打印整棵树的打印函数
-
+    // printTree(head);
+    
   }
 
   public static void printTree(Node head) {

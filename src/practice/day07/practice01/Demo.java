@@ -45,16 +45,48 @@ public class Demo {
     // System.out.println(nhead.left.value);
     // 如何设计一个打印整棵树的打印函数
     // printTree(head);
-    
   }
+
+  static class pNode {
+    int value;
+    pNode left;
+    pNode right;
+    pNode parent;
+    public pNode (int value) {
+      this.value = value;
+    }
+  }
+
+  // ---
 
   public static void printTree(Node head) {
     System.out.println("print:");
-
+    if(head == null) return;
+    printIn(head, 0, "H", 17);
     System.out.println();
   }
 
-  public static void printIn(Node head) {
+  public static void printIn(Node head, int height, String to, int len) {
+    if(head == null) return;
+    printIn(head.left, height + 1, "^", len);
+    String val = to + head.value;
+    int lenM = val.length();
+    // left space
+    int lenL = (len - lenM) / 2;
+    // right space
+    int lenR = len - lenM - lenL;
+    val = getSpace(lenL) + val + getSpace(lenR);
+    System.out.println(getSpace(height * len) + val);
+    printIn(head.right, height + 1, "v", len);
+  }
+
+  public static String getSpace(int num) {
+    String space = " ";
+    StringBuffer buf = new StringBuffer("");
+    for(int i = 0; i < num; i++) {
+      buf.append(space);
+    }
+    return buf.toString();
   }
 
   /**

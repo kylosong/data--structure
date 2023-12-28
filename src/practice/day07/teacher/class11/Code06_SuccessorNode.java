@@ -32,7 +32,7 @@ public class Code06_SuccessorNode {
 	}
 
 	public static Node getLeftMost(Node node) {
-		if (node == null) {
+		if (node == null) { // 此步是多余的，因为上面已经进行了结点判空
 			return node;
 		}
 		while (node.left != null) {

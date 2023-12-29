@@ -1,5 +1,7 @@
 package practice.day07.practice01;
 
+import javax.swing.text.html.HTMLDocument.HTMLReader.ParagraphAction;
+
 public class SuccessorNode {
 	public static void main(String[] args) {
 		// 二叉树结构定义如下：给你二叉树中的某个节点，返回该节点的后继节点。
@@ -26,6 +28,29 @@ public class SuccessorNode {
 		head.right.left.left.parent = head.right.left;
 		head.right.right = new Node(10);
 		head.right.right.parent = head.right;
+	}
+
+	public static Node getSuccessorNode(Node node) {
+		if (node == null)
+			return node;
+		if (node.right != null) {
+			return getMostLeftNode(node.right);
+		} else {
+			Node parent = node.parent;
+			while (parent != null && parent.right == node) {
+				node = parent;
+				parent = node.parent;
+			}
+			return parent;
+		}
+
+	}
+
+	public static Node getMostLeftNode(Node node) {
+		while (node.left != null) {
+			node = node.left;
+		}
+		return node;
 	}
 
 	public static class Node {

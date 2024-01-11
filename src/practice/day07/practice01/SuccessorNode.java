@@ -28,6 +28,9 @@ public class SuccessorNode {
 		head.right.left.left.parent = head.right.left;
 		head.right.right = new Node(10);
 		head.right.right.parent = head.right;
+
+		Node test = head.right.right;
+		System.out.println(test.value + " next: " + getSuccessorNode(test).value);
 	}
 
 	public static Node getSuccessorNode(Node node) {

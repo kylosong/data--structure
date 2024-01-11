@@ -1,4 +1,4 @@
-package class11;
+package practice.day07.teacher.class11;
 
 public class Code07_PaperFolding {
 
@@ -21,6 +21,11 @@ public class Code07_PaperFolding {
 	// 这个节点如果是凹的话，down = T
 	// 这个节点如果是凸的话，down = F
 	// 函数的功能：中序打印以你想象的节点为头的整棵树！
+	//
+	// N 是对折的次数，i 是第几层
+	// 非常精妙的一点，通过第几层控制了，对折的次数，然后通过递归，打印每一层的内容
+	// 实际上却没有建立实际的二叉树
+	// 比较笨蛋方法，通过对折次数建立二叉树，可以尝试去建立二叉树
 	public static void process(int i, int N, boolean down) {
 		if (i > N) {
 			return;

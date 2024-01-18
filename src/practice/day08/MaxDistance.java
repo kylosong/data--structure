@@ -10,7 +10,8 @@ public class MaxDistance {
     }
 
     public static int getMaxDistance(Node head) {
-        if (head == null) return 0;
+        if (head == null)
+            return 0;
         return process(head).maxDistance;
     }
 
@@ -24,7 +25,7 @@ public class MaxDistance {
         int height = Math.max(leftInfo.height, rightInfo.height) + 1;
         int p1 = leftInfo.maxDistance;
         int p2 = rightInfo.maxDistance;
-        int p3 = Math.max(leftInfo.maxDistance, rightInfo.maxDistance) + 1;
+        int p3 = leftInfo.height + rightInfo.height + 1;
         int maxDistance = Math.max(p1, Math.max(p2, p3));
         return new Info(maxDistance, height);
     }
@@ -32,7 +33,8 @@ public class MaxDistance {
     public static class Info {
         private int maxDistance;
         private int height;
-        public Info (int maxDistance, int height) {
+
+        public Info(int maxDistance, int height) {
             this.maxDistance = maxDistance;
             this.height = height;
         }
@@ -43,12 +45,10 @@ public class MaxDistance {
         public int value;
         public Node left;
         public Node right;
-        public Node (int value) {
+
+        public Node(int value) {
             this.value = value;
         }
     }
 
-  
 }
-
-

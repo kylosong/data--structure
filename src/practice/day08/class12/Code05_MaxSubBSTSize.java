@@ -26,6 +26,7 @@ public class Code05_MaxSubBSTSize {
 
 	public static class Info {
 		public int maxBSTSubtreeSize;
+		// 用来记录每个节点的大小
 		public int allSize;
 		public int max;
 		public int min;
@@ -39,6 +40,7 @@ public class Code05_MaxSubBSTSize {
 	}
 
 	public static Info process(TreeNode x) {
+		// 递归的出口，如果为 null，则停止
 		if (x == null) {
 			return null;
 		}
